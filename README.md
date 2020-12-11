@@ -1,3 +1,5 @@
+<img src="./x-attn.png" width="600px"></img>
+
 ## Cross Transformers - Pytorch (wip)
 
 Implementation of Cross Transformer for spatially-aware few-shot transfer, in Pytorch
