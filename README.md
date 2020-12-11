@@ -2,7 +2,7 @@
 
 ## Cross Transformers - Pytorch (wip)
 
-Implementation of Cross Transformer for spatially-aware few-shot transfer, in Pytorch
+Implementation of <a href="https://arxiv.org/abs/2007.11498">Cross Transformer</a> for spatially-aware few-shot transfer, in Pytorch
 
 ## Citations
 
