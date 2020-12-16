@@ -4,6 +4,12 @@
 
 Implementation of <a href="https://arxiv.org/abs/2007.11498">Cross Transformer</a> for spatially-aware few-shot transfer, in Pytorch
 
+## Install
+
+```bash
+$ pip install cross-transformers-pytorch
+```
+
 ## Usage
 
 ```python
