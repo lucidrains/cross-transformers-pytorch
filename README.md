@@ -21,11 +21,13 @@ cross_transformer = CrossTransformer(
     dim_value = 128
 )
 
+# (batch, channels, height, width)
 img_query = torch.randn(1, 3, 224, 224)
-img_supports = torch.randn(1, 3, 3, 224, 224)
 
-distance = cross_transformer(model, img_query, img_supports)
-print(distance)
+# (batch, classes, num supports, channels, height, width)
+img_supports = torch.randn(1, 2, 4, 3, 224, 224)
+
+distances = cross_transformer(model, img_query, img_supports) # (1, 2)
 ```
 
 ## Citations
