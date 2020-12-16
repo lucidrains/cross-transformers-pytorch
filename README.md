@@ -9,6 +9,7 @@ Implementation of <a href="https://arxiv.org/abs/2007.11498">Cross Transformer</
 ```python
 import torch
 from torch import nn
+import torch.nn.functional as F
 from torchvision import models
 from cross_transformers_pytorch import CrossTransformer
 
@@ -27,7 +28,12 @@ img_query = torch.randn(1, 3, 224, 224)
 # (batch, classes, num supports, channels, height, width)
 img_supports = torch.randn(1, 2, 4, 3, 224, 224)
 
-distances = cross_transformer(model, img_query, img_supports) # (1, 2)
+labels = torch.randint(0, 2, (1,))
+
+dists = cross_transformer(model, img_query, img_supports) # (1, 2)
+
+loss = F.cross_entropy(dists, labels)
+loss.backward()
 ```
 
 ## Citations

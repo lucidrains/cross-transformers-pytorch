@@ -51,5 +51,5 @@ class CrossTransformer(nn.Module):
         out = rearrange(out, 'b k c h w -> b k (c h w)')
         query_v = rearrange(query_v, 'b c h w -> b () (c h w)')
 
-        euclidian_dist = ((query_v - out) ** 2).sum(dim = -1) / (h * w)
-        return euclidian_dist
+        euclidean_dist = ((query_v - out) ** 2).sum(dim = -1) / (h * w)
+        return -euclidean_dist
