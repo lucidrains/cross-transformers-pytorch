@@ -12,6 +12,7 @@ class CrossTransformer(nn.Module):
         dim_value = 128
     ):
         super().__init__()
+        self.scale = dim_key ** -0.5
         self.to_qk = nn.Conv2d(dim, dim_key, 1, bias = False)
         self.to_v = nn.Conv2d(dim, dim_value, 1, bias = False)
 
@@ -40,7 +41,7 @@ class CrossTransformer(nn.Module):
         supports_k, supports_v = self.to_qk(supports_repr), self.to_v(supports_repr)
         supports_k, supports_v = map(lambda t: rearrange(t, '(b k n) c h w -> b k n c h w', b = b, k = k), (supports_k, supports_v))
 
-        sim = einsum('b c h w, b k n c i j -> b k h w n i j', query_q, supports_k)
+        sim = einsum('b c h w, b k n c i j -> b k h w n i j', query_q, supports_k) * self.scale
         sim = rearrange(sim, 'b k h w n i j -> b k h w (n i j)')
 
         attn = sim.softmax(dim = -1)
